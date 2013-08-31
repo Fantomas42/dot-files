@@ -1,0 +1,16 @@
+*~
+*.pyc
+*.pyo
+TODO
+TODO.txt
+bin/
+lib/
+dist/
+eggs/
+build/
+local/
+include/
+develop-eggs/
+.noseids
+.coverage
+.installed.cfg

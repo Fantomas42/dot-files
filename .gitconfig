@@ -1,0 +1,50 @@
+[user]
+  name = Fantomas42
+  email = fantomas42@gmail.com
+
+[alias]
+  cl = clone
+  st = status -uno
+  ci = commit
+  co = checkout
+  br = branch -va
+  go = checkout -b
+  ds = diff --staged
+  hist = log --color --graph --pretty=format:'%Cred%h%Creset -%C(bold yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+  todo =  grep --line-number -I -i --word-regexp TODO
+
+[branch "master"]
+  remote = origin
+  merge = refs/heads/master
+
+[color]
+  ui = auto
+
+[color "branch"]
+  current = bold green
+  local = yellow
+  remote = bold blue
+
+[color "status"]
+  added = bold cyan
+  changed = bold green
+  untracked = red
+
+[core]
+  pager = less
+  editor = emacs
+  autocrlt = input
+  whitespace = trailing-space,space-before-tab
+  excludesfile = ~/.gitignore
+
+[help]
+  autocorrect = 1
+
+[push]
+  default = matching
+
+[url "git@github.com:"]
+  insteadOf = "gh:"
+
+[web]
+  browser = firefox
