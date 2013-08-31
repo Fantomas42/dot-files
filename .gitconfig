@@ -35,7 +35,7 @@
 
 [core]
   pager = less
-  editor = emacs
+  editor = emacs -nw
   autocrlt = input
   whitespace = trailing-space,space-before-tab
   excludesfile = ~/.gitignore
