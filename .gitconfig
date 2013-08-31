@@ -30,6 +30,9 @@
   changed = bold green
   untracked = red
 
+[commit]
+  template = ~/.gitmessage
+
 [core]
   pager = less
   editor = emacs
