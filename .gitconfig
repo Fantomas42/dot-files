@@ -4,7 +4,7 @@
 
 [alias]
   cl = clone
-  st = status -uno
+  st = status -uno -s
   ci = commit
   co = checkout
   br = branch -va
@@ -24,6 +24,15 @@
   current = bold green
   local = yellow
   remote = bold blue
+
+[color "diff"]
+  old = red
+  new = bold green
+  func = bold cyan
+  frag = cyan
+  commit = bold yellow
+  whitespace = bold red
+  meta = bold white
 
 [color "status"]
   added = bold cyan
