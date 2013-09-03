@@ -9,6 +9,7 @@
   co = checkout
   br = branch -va
   go = checkout -b
+  wo = checkout -t
   ds = diff --staged
   hist = log --color --graph --pretty=format:'%Cred%h%Creset -%C(bold yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
   todo =  grep --line-number -I -i --word-regexp TODO
