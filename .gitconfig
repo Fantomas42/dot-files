@@ -4,15 +4,18 @@
 
 [alias]
   cl = clone
-  st = status -uno -s
+  st = status -uno -s -b
   ci = commit
   co = checkout
   br = branch -va
   go = checkout -b
   wo = checkout -t
   ds = diff --staged
-  hist = log --color --graph --pretty=format:'%Cred%h%Creset -%C(bold yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+  di = diff --color-words
+  logs = log --stat -p --decorate
+  hist = log --graph --pretty=format:'%Cred%h%Creset -%C(bold yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   todo =  grep --line-number -I -i --word-regexp TODO
+  today = !git log --author=$(git config user.email) --since=yesterday
 
 [branch "master"]
   remote = origin
@@ -55,6 +58,9 @@
 
 [push]
   default = matching
+
+[rerere]
+  enabled = 1
 
 [url "git@github.com:"]
   insteadOf = "gh:"
