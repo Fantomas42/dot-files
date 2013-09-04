@@ -9,11 +9,6 @@
 #    * the fact you just came from Windows and are used to having newlines in
 #      your prompts.
 #
-# USAGE:
-#
-#   1. Save this file as ~/.bash_prompt
-#   2. Add the following line to the end of your ~/.bashrc or ~/.bash_profile:
-#        . ~/.bash_prompt
 #
 # LINEAGE:
 #
@@ -52,11 +47,11 @@ function set_git_branch {
 
   # Set color based on clean/staged/dirty.
   if [[ ${git_status} =~ "working directory clean" ]]; then
-    state="${GREEN}"
+    state="${WHITE_BOLD}"
   elif [[ ${git_status} =~ "Changes to be committed" ]]; then
-    state="${YELLOW_BOLD}"
+    state="${PINK_BOLD}"
   else
-    state="${WHITE}"
+    state="${GREEN_BOLD}"
   fi
 
   # Set arrow icon based on status against remote.
@@ -82,7 +77,7 @@ function set_git_branch {
   fi
 
   # Set the final branch string.
-  BRANCH="${state}(${branch})${remote}${COLOR_NONE} "
+  BRANCH="${state}${branch}${remote}${COLOR_NONE}"
 }
 
 # Return the prompt symbol to use, colorized based on the return value of the
@@ -101,16 +96,16 @@ function set_virtualenv () {
   if test -z "$VIRTUAL_ENV" ; then
       PYTHON_VIRTUALENV=""
   else
-      PYTHON_VIRTUALENV="${CYAN_BOLD}[`basename \"$VIRTUAL_ENV\"`]${COLOR_NONE} "
+      PYTHON_VIRTUALENV="${CYAN_BOLD}`basename \"$VIRTUAL_ENV\"`${COLOR_NONE}"
   fi
 }
 
 # Short the path with using virtualenv
 function pwd_tail () {
   if test -z "$VIRTUAL_ENV" ; then
-    SHORT_PATH="\w"
+    PWD_TAIL="\w"
   else
-    SHORT_PATH="`pwd | sed \"s;${VIRTUAL_ENV};~;\"`"
+    PWD_TAIL="`pwd | sed \"s;${VIRTUAL_ENV};~;\"`"
   fi
 }
 
@@ -134,10 +129,22 @@ function set_bash_prompt () {
   fi
 
   # Set the bash prompt variable.
-#  PS1="${PYTHON_VIRTUALENV}${GREEN}\u@\h ${YELLOW}\w${COLOR_NONE} ${BRANCH}${PROMPT_SYMBOL} "
-  PS1="${BLUE_BOLD}[${PYTHON_VIRTUALENV}@${BRANCH}${BLUE_BOLD}](${COLOR_NONE}\# ${CYAN}\t${BLUE_BOLD})${COLOR_NONE}${SHORT_PATH}${PROMPT_SYMBOL}"
+  CONTEXT=''
+  if test "$PYTHON_VIRTUALENV" && test "$BRANCH" ; then
+    CONTEXT="${PYTHON_VIRTUALENV}@${BRANCH}"
+  else
+    CONTEXT="${PYTHON_VIRTUALENV}${BRANCH}"
+  fi
+  if test "$CONTEXT" ; then
+    CONTEXT="${BLUE_BOLD}[${CONTEXT}${BLUE_BOLD}]"
+  fi
 
-#  PS1="$BLUE[$PINK`basename \"$VIRTUAL_ENV\"`$NO_COLOR@$CYAN\$(parse_git_branch)$RED\$(parse_git_dirty)$BLUE]($NO_COLOR\# $YELLOW\t$BLUE)$GREEN~\$(pwdtail)$ $NO_COLOR"
+  INFOS="${BLUE_BOLD}(${COLOR_NONE}\# ${CYAN}\t${BLUE_BOLD})"
+
+  TAIL="${GREEN}${PWD_TAIL}${PROMPT_SYMBOL}"
+
+  PS1="${CONTEXT}${INFOS}${TAIL}"
+#  PS1="${BLUE_BOLD}[${PYTHON_VIRTUALENV}@${BRANCH}${BLUE_BOLD}](${COLOR_NONE}\# ${CYAN}\t${BLUE_BOLD})${GREEN}${PWD_TAIL}${PROMPT_SYMBOL}"
 
 }
 
