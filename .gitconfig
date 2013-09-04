@@ -21,6 +21,10 @@
   remote = origin
   merge = refs/heads/master
 
+[branch "develop"]
+  remote = origin
+  merge = refs/heads/develop
+
 [color]
   ui = auto
 
@@ -55,6 +59,9 @@
 
 [help]
   autocorrect = 1
+
+[merge]
+  defaultToUpstream = 1
 
 [push]
   default = matching
