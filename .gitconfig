@@ -60,9 +60,6 @@
 [help]
   autocorrect = 1
 
-[merge]
-  defaultToUpstream = 1
-
 [push]
   default = matching
 
