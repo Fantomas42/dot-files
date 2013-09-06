@@ -5,6 +5,7 @@
 [alias]
   cl = clone
   st = status -uno -s -b
+  sta = status
   ci = commit
   co = checkout
   br = branch -va
