@@ -11,10 +11,9 @@ if [ -f ~/.bash_aliases_local ]; then
     . ~/.bash_aliases_local
 fi
 
-if [ -f ~/.bash_prompt ]; then
-    . ~/.bash_prompt
-fi
 
-if [ -f ~/.bash_venv_activate ]; then
-    . ~/.bash_venv_activate
-fi
+# Load custom prompt
+. ~/.bash_prompt
+# Load virtualenv autoactivate
+. ~/.bash_venv_activate
+
