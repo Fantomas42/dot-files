@@ -1,17 +1,4 @@
-*~
-*.pyc
-*.pyo
-*.egg-info/
-TODO
-TODO.txt
-bin/
-lib/
-dist/
-eggs/
-build/
-local/
-include/
-develop-eggs/
-.noseids
-.coverage
-.installed.cfg
+# Ignore everything
+# So if you want to add new file use:
+# git add -f file
+*

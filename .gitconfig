@@ -56,7 +56,7 @@
   editor = emacs -nw
   autocrlt = input
   whitespace = trailing-space,space-before-tab
-  excludesfile = ~/.gitignore
+  excludesfile = ~/.gitignore-python
 
 [help]
   autocorrect = 1
