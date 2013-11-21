@@ -144,8 +144,6 @@ function set_bash_prompt () {
   TAIL="${GREEN}${PWD_TAIL}${PROMPT_SYMBOL}"
 
   PS1="${CONTEXT}${INFOS}${TAIL}"
-#  PS1="${BLUE_BOLD}[${PYTHON_VIRTUALENV}@${BRANCH}${BLUE_BOLD}](${COLOR_NONE}\# ${CYAN}\t${BLUE_BOLD})${GREEN}${PWD_TAIL}${PROMPT_SYMBOL}"
-
 }
 
 # Disable virtualenv prompt modification
