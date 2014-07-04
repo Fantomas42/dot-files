@@ -15,7 +15,7 @@
   di = diff --color-words
   logs = log --stat -p --decorate
   hist = log --graph --pretty=format:'%Cred%h%Creset -%C(bold yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-  todo =  grep --line-number -I -i --word-regexp TODO
+  todo = grep --line-number -I -i --word-regexp TODO
   today = !git log --author=$(git config user.email) --since=yesterday
 
 [branch "master"]
@@ -58,11 +58,32 @@
   whitespace = trailing-space,space-before-tab
   excludesfile = ~/.gitignore-python
 
+[diff]
+  mnemonicPrefix = true
+  wordRegex = .
+
+[merge]
+  conflictStyle = diff3
+
+[mergetool]
+  keepBackup = false
+  keepTemporaries = false
+  prompt = false
+
+[grep]
+  extendedRegexp = true
+
 [help]
   autocorrect = 1
 
+[log]
+  abbrevCommit = true
+
 [push]
   default = matching
+
+[pull]
+  rebase = preserve
 
 [rerere]
   enabled = 1
