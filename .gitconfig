@@ -82,9 +82,6 @@
 [push]
   default = matching
 
-[pull]
-  rebase = preserve
-
 [rerere]
   enabled = 1
 
