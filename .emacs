@@ -12,6 +12,19 @@
 (yas/initialize)
 (yas/load-directory "~/.emacs.d/plugins/yasnippet-0.6.1c/snippets")
 
+(defun delete-trailing-blanklines ()
+   "Deletes all blank lines at the end of the file, even the last one"
+   (interactive)
+   (save-excursion
+     (save-restriction
+       (widen)
+       (goto-char (point-max))
+       (delete-blank-lines)
+       (let ((trailnewlines (abs (skip-chars-backward "\n\t"))))
+         (if (> trailnewlines 1)
+             (progn
+               (delete-char trailnewlines)))))))
+
 (column-number-mode 1)
 (menu-bar-mode 0)
 (setq-default fill-column 75)
@@ -19,6 +32,7 @@
 (global-set-key [f7] "import pudb; pu.db\n")
 (add-hook 'sgml-mode-hook 'zencoding-mode)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+(add-hook 'before-save-hook 'delete-trailing-blanklines)
 ;; (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
 (when (load "flymake" t)
