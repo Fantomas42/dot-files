@@ -13,17 +13,13 @@
 (yas/load-directory "~/.emacs.d/plugins/yasnippet-0.6.1c/snippets")
 
 (defun delete-trailing-blanklines ()
-   "Deletes all blank lines at the end of the file, even the last one"
-   (interactive)
-   (save-excursion
-     (save-restriction
-       (widen)
-       (goto-char (point-max))
-       (delete-blank-lines)
-       (let ((trailnewlines (abs (skip-chars-backward "\n\t"))))
-         (if (> trailnewlines 1)
-             (progn
-               (delete-char trailnewlines)))))))
+ "Deletes all blank lines at the end of the file."
+ (interactive)
+ (save-excursion
+   (save-restriction
+     (widen)
+     (goto-char (point-max))
+     (delete-blank-lines))))
 
 (column-number-mode 1)
 (menu-bar-mode 0)
