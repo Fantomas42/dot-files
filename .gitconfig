@@ -13,6 +13,7 @@
   wo = checkout -t
   ds = diff --staged
   di = diff --color-words
+  poule = pull
   logs = log --stat -p --decorate
   hist = log --graph --pretty=format:'%Cred%h%Creset -%C(bold yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   todo = grep --line-number -I -i --word-regexp TODO
