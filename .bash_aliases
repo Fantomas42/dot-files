@@ -1,6 +1,6 @@
 alias l='ls -l'
 alias la='ls -la'
-alias emacs='emacs -nw'
+alias emacs='emacsclient -t'
 alias e='emacs'
 alias j='jobs'
 alias git='LANGUAGE=en_US.UTF-8 git'
