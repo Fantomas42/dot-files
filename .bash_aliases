@@ -1,3 +1,6 @@
+# Load custom env
+. ~/.bash_env
+
 alias l='ls -l'
 alias la='ls -la'
 alias emacs='emacsclient -t'

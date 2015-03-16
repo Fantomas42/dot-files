@@ -1,0 +1,6 @@
+PS1="\[\e[3;34m\][\[\e[m\]\# \[\e[0;33m\]\t\[\e[m\]\[\e[3;34m\]]\[\e[m\]\[\e[0;31m\]Fantomas:\[\e[0;32m\]\w$ \[\e[m\]"
+
+export ALTERNATE_EDITOR=""
+export EDITOR="emacsclient -t"
+export VISUAL="emacsclient -c -a emacs"
+export NOSE_PROGRESSIVE_EDITOR="e"
