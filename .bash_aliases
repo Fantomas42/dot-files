@@ -10,6 +10,7 @@ alias git='LANGUAGE=en_US.UTF-8 git'
 alias clean='find . -maxdepth 1 -type f \( -name "*.pyc" -o -name "*.pyo" -o -name "\#*" -o -name "*~" \) -exec rm -fv {} \;'
 alias cleanr='find . -type f \( -name "*.pyc" -o -name "*.pyo" -o -name "\#*" -o -name "*~" \) -exec rm -fv {} \;'
 alias xview='xdg-open .'
+alias hostedit='sudo emacs -nw /etc/hosts'
 
 if [ -f ~/.bash_aliases_local ]; then
     . ~/.bash_aliases_local
