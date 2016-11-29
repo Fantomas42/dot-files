@@ -29,7 +29,8 @@
 (add-hook 'sgml-mode-hook 'zencoding-mode)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'before-save-hook 'delete-trailing-blanklines)
-(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . js2-jsx-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . jsx-mode))
+(autoload 'jsx-mode "jsx-mode" "JSX mode" t)
 (add-hook 'js-mode-hook 'js2-minor-mode)
 ;; (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
@@ -64,3 +65,11 @@
 (put 'downcase-region 'disabled nil)
 
 (put 'upcase-region 'disabled nil)
+
+(require 'package) ;; You might already have this line
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/"))
+(when (< emacs-major-version 24)
+  ;; For important compatibility libraries like cl-lib
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+(package-initialize) ;; You might already have this line
