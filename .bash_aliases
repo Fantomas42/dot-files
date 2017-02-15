@@ -12,6 +12,9 @@ alias cleanr='find . -type f \( -name "*.pyc" -o -name "*.pyo" -o -name "\#*" -o
 alias xview='xdg-open .'
 alias hostedit='sudo emacs -nw /etc/hosts'
 
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+
 if [ -f ~/.bash_aliases_local ]; then
     . ~/.bash_aliases_local
 fi
