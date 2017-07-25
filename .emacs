@@ -1,16 +1,27 @@
-(setq my-lisp-directory (expand-file-name "~/.emacs-lisp/"))
-(add-to-list 'load-path my-lisp-directory)
-(add-to-list 'load-path "~/.emacs.d/plugins/yasnippet-0.6.1c")
-(require 'haml-mode)
-(require 'sass-mode)
-(require 'rst)
-(require 'django-html-mode)
-(require 'zencoding-mode)
-(require 'yasnippet)
+;; Add more packages
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/"))
+(package-initialize)
+;; Could be usefull to install these packages
+;; html-mode sass-mode rst django-html-mode zencoding-mode yasnippet jsx-mode
 
-(yas/initialize)
-(yas/load-directory "~/.emacs.d/plugins/yasnippet-0.6.1c/snippets")
+;; Config base
+(setq-default column-number-mode t)
+(setq-default menu-bar-mode 0)
+(setq-default fill-column 75)
+(setq-default auto-save-default nil) ; stop creating those #autosave# files
+(setq initial-scratch-message ";; Start coding now !")
+(setq inhibit-splash-screen t)
+(setq inhibit-startup-message t)
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
 
+;; Aliases
+(global-set-key [f6] "import pdb; pdb.set_trace()\n")
+(global-set-key [f7] "import pudb; pu.db\n")
+
+;; Hooks
 (defun delete-trailing-blanklines ()
  "Deletes all blank lines at the end of the file."
  (interactive)
@@ -20,19 +31,15 @@
      (goto-char (point-max))
      (delete-blank-lines))))
 
-(column-number-mode 1)
-(menu-bar-mode 0)
-(setq-default fill-column 75)
-(global-set-key [f6] "import pdb; pdb.set_trace()\n")
-(global-set-key [f7] "import pudb; pu.db\n")
-(add-hook 'sgml-mode-hook 'zencoding-mode)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'before-save-hook 'delete-trailing-blanklines)
-(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . jsx-mode))
-(autoload 'jsx-mode "jsx-mode" "JSX mode" t)
 (add-hook 'js-mode-hook 'js2-minor-mode)
 ;; (add-hook 'text-mode-hook 'turn-on-auto-fill)
+;; (add-hook 'sgml-mode-hook 'zencoding-mode)
+;; (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . jsx-mode))
+;; (autoload 'jsx-mode "jsx-mode" "JSX mode" t)
 
+;; Flymake
 (when (load "flymake" t)
   (defun flymake-pyflakes-init ()
     (let* ((temp-file (flymake-init-create-temp-buffer-copy
@@ -53,7 +60,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(inhibit-startup-screen t))
+)
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -62,12 +70,3 @@
  '(font-lock-function-name-face ((t (:foreground "cyan"))))
  '(font-lock-keyword-face ((t (:foreground "brightcyan"))))
  '(font-lock-string-face ((t (:foreground "green")))))
-
-(put 'downcase-region 'disabled nil)
-
-(put 'upcase-region 'disabled nil)
-
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/"))
-(package-initialize)
