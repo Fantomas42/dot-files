@@ -2307,7 +2307,7 @@ the tab points in the given tablist."
 		  (mapcar (lambda (x) (cons x nil))
 			  (let ((maxcol 120)
 				(max-lisp-eval-depth 2000))
-			    (flet ((addnum (x)
+			    (cl-flet ((addnum (x)
 					   (if (> x maxcol)
 					       nil
 					     (cons x (addnum
