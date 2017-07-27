@@ -53,7 +53,7 @@
 	       '("\\.py\\'" flymake-pyflakes-init)))
 
 (add-hook 'find-file-hook 'flymake-find-file-hook)
-
+(delete '("\\.html?\\'" flymake-xml-init) flymake-allowed-file-name-masks)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
