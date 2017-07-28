@@ -16,3 +16,4 @@ TODO.txt
 .noseids
 .coverage
 .installed.cfg
+pip-selfcheck.json
