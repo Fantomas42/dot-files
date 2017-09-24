@@ -34,8 +34,8 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'before-save-hook 'delete-trailing-blanklines)
 (add-hook 'js-mode-hook 'js2-minor-mode)
+(add-hook 'sgml-mode-hook 'emmet-mode)
 ;; (add-hook 'text-mode-hook 'turn-on-auto-fill)
-;; (add-hook 'sgml-mode-hook 'zencoding-mode)
 ;; (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . jsx-mode))
 ;; (autoload 'jsx-mode "jsx-mode" "JSX mode" t)
 
