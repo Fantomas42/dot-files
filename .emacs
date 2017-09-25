@@ -10,6 +10,7 @@
 (setq-default column-number-mode t)
 (setq-default menu-bar-mode 0)
 (setq-default fill-column 75)
+(setq-default indent-tabs-mode nil)
 (setq-default auto-save-default nil) ; stop creating those #autosave# files
 (setq initial-scratch-message ";; Start coding now !")
 (setq inhibit-splash-screen t)
