@@ -36,6 +36,7 @@
 (add-hook 'before-save-hook 'delete-trailing-blanklines)
 (add-hook 'js-mode-hook 'js2-minor-mode)
 (add-hook 'sgml-mode-hook 'emmet-mode)
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . sass-mode))
 ;; (add-hook 'text-mode-hook 'turn-on-auto-fill)
 ;; (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . jsx-mode))
 ;; (autoload 'jsx-mode "jsx-mode" "JSX mode" t)
