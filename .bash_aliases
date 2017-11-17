@@ -11,6 +11,7 @@ alias clean='find . -maxdepth 1 -type f \( -name "*.pyc" -o -name "*.pyo" -o -na
 alias cleanr='find . -type f \( -name "*.pyc" -o -name "*.pyo" -o -name "\#*" -o -name "*~" \) -exec rm -fv {} \;'
 alias xview='xdg-open .'
 alias hostedit='sudo emacs -nw /etc/hosts'
+alias gdiff='git diff --no-index'
 
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
