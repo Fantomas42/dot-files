@@ -12,6 +12,7 @@ TODO.txt
 /build/
 /local/
 /include/
+/logs/
 /develop-eggs/
 .noseids
 .coverage
