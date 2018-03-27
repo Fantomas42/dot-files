@@ -20,6 +20,7 @@
   todo = grep --line-number -I -i --word-regexp TODO
   today = !git log --author=$(git config user.email) --since=yesterday
   cancel = reset HEAD^1
+  correct = commit --amend -m
 
 [branch "master"]
   remote = origin
