@@ -9,6 +9,7 @@
   (package-refresh-contents))
 
 (defvar packages-list '(emmet-mode
+                        flycheck
                         js2-mode
                         json-mode
                         rjsx-mode
@@ -32,6 +33,8 @@
 (setq inhibit-startup-message t)
 (setq js-indent-level 2)
 (setq-default js2-basic-offset 2)
+(setq-default js2-mode-show-parse-errors nil)
+(setq-default js2-mode-show-strict-warnings nil)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (menu-bar-mode -1)
@@ -56,6 +59,7 @@
      (goto-char (point-max))
      (delete-blank-lines))))
 
+(add-hook 'after-init-hook #'global-flycheck-mode)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'before-save-hook 'delete-trailing-blanklines)
 (add-hook 'sgml-mode-hook 'emmet-mode)
@@ -76,22 +80,6 @@
 (add-hook 'css-mode-hook 'hexcolour-add-to-font-lock)
 (add-hook 'sass-mode-hook 'hexcolour-add-to-font-lock)
 (add-hook 'html-mode-hook 'hexcolour-add-to-font-lock)
-
-;; Flymake
-(when (load "flymake" t)
-  (defun flymake-pyflakes-init ()
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy
-		       'flymake-create-temp-inplace))
-	   (local-file (file-relative-name
-			temp-file
-			(file-name-directory buffer-file-name))))
-      (list "flake8" (list local-file))))
-
-  (add-to-list 'flymake-allowed-file-name-masks
-	       '("\\.py\\'" flymake-pyflakes-init)))
-
-(add-hook 'find-file-hook 'flymake-find-file-hook)
-(delete '("\\.html?\\'" flymake-xml-init) flymake-allowed-file-name-masks)
 
 ;; Defaults
 (custom-set-variables
