@@ -3,14 +3,29 @@
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
-;; Could be usefull to install these packages
-;; html-mode sass-mode rst django-html-mode zencoding-mode yasnippet jsx-mode
+
+;; Install missing packages
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+(defvar packages-list '(emmet-mode
+                        js2-mode
+                        json-mode
+                        rjsx-mode
+                        sass-mode
+                        yasnippet
+                        yasnippet-snippets)
+  "A list of packages to install at launch (if needed).")
+
+(dolist (p packages-list)
+  (when (not (package-installed-p p))
+    (package-install p)))
 
 ;; Config base
 (setq-default column-number-mode t)
-(setq-default menu-bar-mode 0)
 (setq-default fill-column 75)
 (setq-default indent-tabs-mode nil)
+(setq default-tab-width 4)
 (setq-default auto-save-default nil) ; stop creating those #autosave# files
 (setq initial-scratch-message ";; Start coding now !")
 (setq inhibit-splash-screen t)
@@ -19,6 +34,13 @@
 (setq-default js2-basic-offset 2)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
+(menu-bar-mode -1)
+;;(tool-bar-mode -1)
+(prefer-coding-system 'mule-utf-8)
+
+;; Yasnippet
+(require 'yasnippet)
+(yas-global-mode 1)
 
 ;; Aliases
 (global-set-key [f6] "import pdb; pdb.set_trace()\n")
@@ -37,11 +59,23 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'before-save-hook 'delete-trailing-blanklines)
 (add-hook 'sgml-mode-hook 'emmet-mode)
+(add-hook 'rst-mode-hook 'turn-on-auto-fill)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . sass-mode))
-;; (add-hook 'text-mode-hook 'turn-on-auto-fill)
-;; (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . jsx-mode))
-;; (autoload 'jsx-mode "jsx-mode" "JSX mode" t)
+
+;; Colored #hexacolor
+(defvar hexcolour-keywords
+  '(("#[abcdef[:digit:]]\\{3,6\\}"
+     (0 (put-text-property
+         (match-beginning 0)
+         (match-end 0)
+         'face (list :background
+                     (match-string-no-properties 0)))))))
+(defun hexcolour-add-to-font-lock ()
+  (font-lock-add-keywords nil hexcolour-keywords))
+(add-hook 'css-mode-hook 'hexcolour-add-to-font-lock)
+(add-hook 'sass-mode-hook 'hexcolour-add-to-font-lock)
+(add-hook 'html-mode-hook 'hexcolour-add-to-font-lock)
 
 ;; Flymake
 (when (load "flymake" t)
@@ -59,6 +93,7 @@
 (add-hook 'find-file-hook 'flymake-find-file-hook)
 (delete '("\\.html?\\'" flymake-xml-init) flymake-allowed-file-name-masks)
 
+;; Defaults
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
