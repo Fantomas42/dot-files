@@ -1,4 +1,10 @@
-;; Add more packages
+;;; .emacs --- Initialization file for Emacs
+
+;;; Commentary:
+
+;;; Fantomas42's Emacs personal config
+
+;;; Code:
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/"))
@@ -26,12 +32,11 @@
 (setq-default column-number-mode t)
 (setq-default fill-column 75)
 (setq-default indent-tabs-mode nil)
-(setq default-tab-width 4)
+(setq tab-width 4)
 (setq-default auto-save-default nil) ; stop creating those #autosave# files
 (setq initial-scratch-message ";; Start coding now !")
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
-(setq js-indent-level 2)
 (setq-default js2-basic-offset 2)
 (setq-default js2-mode-show-parse-errors nil)
 (setq-default js2-mode-show-strict-warnings nil)
@@ -76,6 +81,7 @@
          'face (list :background
                      (match-string-no-properties 0)))))))
 (defun hexcolour-add-to-font-lock ()
+  "Colorize background with matching hexadecimal value."
   (font-lock-add-keywords nil hexcolour-keywords))
 (add-hook 'css-mode-hook 'hexcolour-add-to-font-lock)
 (add-hook 'sass-mode-hook 'hexcolour-add-to-font-lock)
@@ -97,3 +103,5 @@
  '(font-lock-function-name-face ((t (:foreground "cyan"))))
  '(font-lock-keyword-face ((t (:foreground "brightcyan"))))
  '(font-lock-string-face ((t (:foreground "green")))))
+
+;;; .emacs ends here
