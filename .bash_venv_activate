@@ -20,15 +20,26 @@ cd ()
     return 0
 }
 
-auto_activate ()
-{
-  # "Detect" virtualenv files:
-  if [ -r "bin/activate" ]; then
-      if head -n 1 "bin/activate" | grep -q 'source bin/activate' > /dev/null; then
-          source "bin/activate"
-      fi
-  fi
+find-up () {
+    path=$(pwd)
+    while [[ "$path" != "" && ! -e "$path/$1" ]]; do
+        path=${path%/*}
+    done
+    echo "$path"
 }
 
-# Auto activate at start-up
+auto_activate ()
+{
+    VENV_DIR=$(find-up ./bin/activate)
+    if [ ! -z $VENV_DIR ]; then
+        VENV_PATH="$VENV_DIR/bin/activate"
+        if [ -r $VENV_PATH ]; then
+            if head -n 1 $VENV_PATH | grep -q 'source bin/activate' > /dev/null; then
+                source $VENV_PATH
+            fi
+        fi
+    fi
+}
+
+# Auto-activate at start-up
 auto_activate
