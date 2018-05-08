@@ -15,6 +15,7 @@
   (package-refresh-contents))
 
 (defvar packages-list '(emmet-mode
+                        fill-column-indicator
                         flycheck
                         js2-mode
                         json-mode
@@ -49,6 +50,9 @@
 ;; Yasnippet
 (require 'yasnippet)
 (yas-global-mode 1)
+
+;; Columns indicator
+(require 'fill-column-indicator)
 
 ;; Aliases
 (global-set-key [f6] "import pdb; pdb.set_trace()\n")
