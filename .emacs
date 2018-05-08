@@ -52,7 +52,7 @@
 (yas-global-mode 1)
 
 ;; Columns indicator
-(require 'fill-column-indicator)
+;;(require 'fill-column-indicator)
 
 ;; Aliases
 (global-set-key [f6] "import pdb; pdb.set_trace()\n")
@@ -69,6 +69,7 @@
      (delete-blank-lines))))
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
+(add-hook 'after-init-hook (lambda () (load-theme 'manoj-dark)))
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (add-hook 'before-save-hook 'delete-trailing-blanklines)
 (add-hook 'sgml-mode-hook 'emmet-mode)
