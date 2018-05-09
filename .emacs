@@ -6,8 +6,9 @@
 
 ;;; Code:
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/"))
+(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                         ("marmalade" . "https://marmalade-repo.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/")))
 (package-initialize)
 
 ;; Install missing packages
@@ -110,7 +111,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-)
+ '(package-selected-packages
+   (quote
+    (magit-gitflow magit yasnippet-snippets sass-mode rjsx-mode python-mode json-mode flycheck fill-column-indicator emmet-mode))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
