@@ -51,9 +51,6 @@
 (require 'yasnippet)
 (yas-global-mode 1)
 
-;; Columns indicator
-;;(require 'fill-column-indicator)
-
 ;; Aliases
 (global-set-key [f6] "import pdb; pdb.set_trace()\n")
 (global-set-key [f7] "import pudb; pu.db\n")
