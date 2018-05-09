@@ -53,6 +53,17 @@
 (require 'yasnippet)
 (yas-global-mode 1)
 
+;; Fill Column Indicator
+(setq-default fci-rule-column 80)
+(setq-default fci-rule-color "#DC143C")
+(define-globalized-minor-mode global-fci-mode fci-mode
+  (lambda ()
+      (if (and
+           (not (string-match "^\*.*\*$" (buffer-name)))
+           (not (eq major-mode 'dired-mode)))
+          (fci-mode 1))))
+(global-fci-mode 1)
+
 ;; Aliases
 (global-set-key [f6] "import pdb; pdb.set_trace()\n")
 (global-set-key [f7] "import pudb; pu.db\n")
