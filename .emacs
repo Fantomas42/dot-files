@@ -19,6 +19,8 @@
                         flycheck
                         js2-mode
                         json-mode
+                        magit
+                        magit-gitflow
                         rjsx-mode
                         sass-mode
                         yasnippet
@@ -54,6 +56,7 @@
 ;; Aliases
 (global-set-key [f6] "import pdb; pdb.set_trace()\n")
 (global-set-key [f7] "import pudb; pu.db\n")
+(global-set-key (kbd "C-x g") 'magit-status)
 
 ;; Hooks
 (defun delete-trailing-blanklines ()
@@ -71,6 +74,7 @@
 (add-hook 'before-save-hook 'delete-trailing-blanklines)
 (add-hook 'sgml-mode-hook 'emmet-mode)
 (add-hook 'rst-mode-hook 'turn-on-auto-fill)
+(add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . sass-mode))
 
