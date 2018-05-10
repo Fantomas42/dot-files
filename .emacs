@@ -47,7 +47,7 @@
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (menu-bar-mode -1)
-;;(tool-bar-mode -1)
+(tool-bar-mode -1)
 (prefer-coding-system 'mule-utf-8)
 
 ;; Yasnippet
