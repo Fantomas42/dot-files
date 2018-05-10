@@ -20,6 +20,7 @@
         json-mode
         magit
         magit-gitflow
+        projectile
         rjsx-mode
         sass-mode
         yasnippet
@@ -56,6 +57,9 @@
 (setq-default js2-basic-offset 2)
 (setq-default js2-mode-show-parse-errors nil)
 (setq-default js2-mode-show-strict-warnings nil)
+
+;; Projectile
+(projectile-mode 1)
 
 ;; Yasnippet
 (yas-global-mode 1)
