@@ -48,7 +48,7 @@
 (setq-default inhibit-startup-message t)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
-(menu-bar-mode -1)
+(menu-bar-mode 1)
 (tool-bar-mode -1)
 (prefer-coding-system 'mule-utf-8)
 
