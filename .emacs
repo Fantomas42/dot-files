@@ -61,6 +61,7 @@
   (lambda ()
       (if (and
            (not (string-match "^\*.*\*$" (buffer-name)))
+           (not (string-match "^magit.*" (buffer-name)))
            (not (eq major-mode 'dired-mode)))
           (fci-mode 1))))
 (global-fci-mode 1)
