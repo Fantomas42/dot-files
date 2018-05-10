@@ -11,25 +11,31 @@
 (package-initialize)
 
 ;; Install packages
-(when (not package-archive-contents)
-  (package-refresh-contents))
+(setq package-selected-packages
+      '(
+        emmet-mode
+        fill-column-indicator
+        flycheck
+        js2-mode
+        json-mode
+        magit
+        magit-gitflow
+        rjsx-mode
+        sass-mode
+        yasnippet
+        yasnippet-snippets
+	))
 
-(defvar packages-list '(emmet-mode
-                        fill-column-indicator
-                        flycheck
-                        js2-mode
-                        json-mode
-                        magit
-                        magit-gitflow
-                        rjsx-mode
-                        sass-mode
-                        yasnippet
-                        yasnippet-snippets)
-  "A list of packages to install at launch (if needed).")
+(defun install-packages ()
+  "Install all required packages."
+  (interactive)
+  (unless package-archive-contents
+    (package-refresh-contents))
+  (dolist (package package-selected-packages)
+    (unless (package-installed-p package)
+      (package-install package))))
 
-(dolist (p packages-list)
-  (when (not (package-installed-p p))
-    (package-install p)))
+(install-packages)
 
 ;; Config base
 (setq-default column-number-mode t)
@@ -137,9 +143,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (magit-gitflow magit yasnippet-snippets sass-mode rjsx-mode python-mode json-mode flycheck fill-column-indicator emmet-mode))))
+ )
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
