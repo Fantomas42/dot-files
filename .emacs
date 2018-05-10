@@ -57,6 +57,31 @@
 ;; Fill Column Indicator
 (setq-default fci-rule-column 80)
 (setq-default fci-rule-color "#DC143C")
+
+(defvar i42/fci-mode-suppressed nil)
+(make-variable-buffer-local 'i42/fci-mode-suppressed)
+
+(defun fci-width-workaround (frame)
+  "Activate fci when terminal allow it."
+  (let ((fci-enabled (symbol-value 'fci-mode))
+        (fci-column (if fci-rule-column fci-rule-column fill-column))
+        (current-window-list (window-list frame 'no-minibuf)))
+    (dolist (window current-window-list)
+      (with-selected-window window
+        (if i42/fci-mode-suppressed
+            (when (and (eq fci-enabled nil)
+                       (< fci-column
+                          (+ (window-width) (window-hscroll))))
+              (setq i42/fci-mode-suppressed nil)
+              (turn-on-fci-mode))
+          ;; i42/fci-mode-suppressed == nil
+          (when (and fci-enabled fci-column
+                     (>= fci-column
+                         (+ (window-width) (window-hscroll))))
+            (setq i42/fci-mode-suppressed t)
+            (turn-off-fci-mode)))))))
+(add-hook 'window-size-change-functions 'fci-width-workaround)
+
 (define-globalized-minor-mode fci-global-mode fci-mode
   (lambda ()
       (if (and
