@@ -5,13 +5,12 @@
 ;;; Fantomas42's Emacs personal config
 
 ;;; Code:
-(require 'package)
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ("marmalade" . "https://marmalade-repo.org/packages/")
                          ("melpa" . "https://melpa.org/packages/")))
 (package-initialize)
 
-;; Install missing packages
+;; Install packages
 (when (not package-archive-contents)
   (package-refresh-contents))
 
@@ -36,35 +35,36 @@
 (setq-default column-number-mode t)
 (setq-default fill-column 75)
 (setq-default indent-tabs-mode nil)
-(setq tab-width 4)
-(setq-default auto-save-default nil) ; stop creating those #autosave# files
-(setq initial-scratch-message ";; Start coding now !")
-(setq inhibit-splash-screen t)
-(setq inhibit-startup-message t)
-(setq-default js2-basic-offset 2)
-(setq-default js2-mode-show-parse-errors nil)
-(setq-default js2-mode-show-strict-warnings nil)
+(setq-default tab-width 4)
+(setq-default auto-save-default nil)
+(setq-default initial-scratch-message ";; Start coding now !")
+(setq-default inhibit-splash-screen t)
+(setq-default inhibit-startup-message t)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (prefer-coding-system 'mule-utf-8)
 
+;; JS2
+(setq-default js2-basic-offset 2)
+(setq-default js2-mode-show-parse-errors nil)
+(setq-default js2-mode-show-strict-warnings nil)
+
 ;; Yasnippet
-(require 'yasnippet)
 (yas-global-mode 1)
 
 ;; Fill Column Indicator
 (setq-default fci-rule-column 80)
 (setq-default fci-rule-color "#DC143C")
-(define-globalized-minor-mode global-fci-mode fci-mode
+(define-globalized-minor-mode fci-global-mode fci-mode
   (lambda ()
       (if (and
            (not (string-match "^\*.*\*$" (buffer-name)))
            (not (string-match "^magit.*" (buffer-name)))
            (not (eq major-mode 'dired-mode)))
           (fci-mode 1))))
-(global-fci-mode 1)
+(fci-global-mode 1)
 
 ;; Aliases
 (global-set-key [f6] "import pdb; pdb.set_trace()\n")
@@ -121,6 +121,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-)
+ )
 
 ;;; .emacs ends here
