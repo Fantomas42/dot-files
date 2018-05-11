@@ -39,6 +39,7 @@
 (install-packages)
 
 ;; Config base
+(fset 'yes-or-no-p 'y-or-n-p)
 (setq-default column-number-mode t)
 (setq-default fill-column 75)
 (setq-default indent-tabs-mode nil)
