@@ -13,6 +13,7 @@
 ;; Install packages
 (setq package-selected-packages
       '(
+        anaconda-mode
         emmet-mode
         fill-column-indicator
         flycheck
@@ -200,6 +201,7 @@
 (add-hook 'sgml-mode-hook 'emmet-mode)
 (add-hook 'rst-mode-hook 'turn-on-auto-fill)
 (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
+(add-hook 'python-mode-hook 'anaconda-mode)
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . sass-mode))
 
 ;; Colored #hexacolor
