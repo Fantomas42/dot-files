@@ -25,6 +25,7 @@
         magit
         magit-gitflow
         projectile
+        smart-mode-line
         rjsx-mode
         sass-mode
         yasnippet
@@ -110,6 +111,12 @@
 (autoload 'gfm-mode "markdown-mode"
    "Major mode for editing GitHub Flavored Markdown files" t)
 (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
+
+;; Smart mode linee
+(require 'smart-mode-line)
+(setq sml/no-confirm-load-theme t)
+(setq sml/theme 'dark)
+(sml/setup)
 
 ;; Projectile
 (projectile-mode 1)
