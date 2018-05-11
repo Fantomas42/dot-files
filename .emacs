@@ -18,6 +18,8 @@
         flycheck
         js2-mode
         json-mode
+        helm
+        helm-projectile
         magit
         magit-gitflow
         projectile
@@ -53,6 +55,33 @@
 (menu-bar-mode 1)
 (tool-bar-mode -1)
 (prefer-coding-system 'mule-utf-8)
+
+;; Helm
+(require 'helm)
+(require 'helm-config)
+
+(setq helm-split-window-inside-p t
+      helm-move-to-line-cycle-in-source t
+      helm-scroll-amount 8
+      helm-echo-input-in-header-line t
+      helm-M-x-fuzzy-match t
+      helm-autoresize-min-height 20)
+(helm-autoresize-mode 1)
+
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ;; Rebind tab to do persistent action
+(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ;; Make TAB works in terminal
+(define-key helm-map (kbd "C-z")  'helm-select-action) ;; List actions using C-z
+
+(define-key global-map [remap find-file] 'helm-find-files)
+(define-key global-map [remap occur] 'helm-occur)
+(define-key global-map [remap dabbrev-expand] 'helm-dabbrev)
+(define-key global-map [remap execute-extended-command] 'helm-M-x)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x b") 'helm-mini)
+(add-hook 'kill-emacs-hook #'(lambda () (and (file-exists-p "$CONF_FILE") (delete-file "$CONF_FILE"))))
+
+(helm-mode 1)
+(helm-projectile-on)
 
 ;; JS2
 (setq-default js2-basic-offset 2)
