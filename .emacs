@@ -20,6 +20,7 @@
         json-mode
         helm
         helm-projectile
+        markdown-mode
         magit
         magit-gitflow
         projectile
@@ -87,6 +88,17 @@
 (setq-default js2-basic-offset 2)
 (setq-default js2-mode-show-parse-errors nil)
 (setq-default js2-mode-show-strict-warnings nil)
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+
+;; Markdown
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+(autoload 'gfm-mode "markdown-mode"
+   "Major mode for editing GitHub Flavored Markdown files" t)
+(add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
 
 ;; Projectile
 (projectile-mode 1)
@@ -153,7 +165,6 @@
 (add-hook 'sgml-mode-hook 'emmet-mode)
 (add-hook 'rst-mode-hook 'turn-on-auto-fill)
 (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . sass-mode))
 
 ;; Colored #hexacolor
