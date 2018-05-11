@@ -19,6 +19,7 @@
         js2-mode
         json-mode
         helm
+        helm-fuzzier
         helm-projectile
         markdown-mode
         magit
@@ -59,15 +60,28 @@
 
 ;; Helm
 (require 'helm)
+(require 'helm-command)
+(require 'helm-for-files)
+(require 'helm-semantic)
 (require 'helm-config)
 
 (setq helm-split-window-inside-p t
       helm-move-to-line-cycle-in-source t
       helm-scroll-amount 8
       helm-echo-input-in-header-line t
+      helm-autoresize-min-height 20
+      helm-recentf-fuzzy-match t
+      helm-buffers-fuzzy-matching t
+      helm-locate-fuzzy-match t
       helm-M-x-fuzzy-match t
-      helm-autoresize-min-height 20)
+      helm-semantic-fuzzy-match t
+      helm-imenu-fuzzy-match t
+      )
+
+(helm-mode 1)
 (helm-autoresize-mode 1)
+(helm-projectile-on)
+(helm-fuzzier-mode 1)
 
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ;; Rebind tab to do persistent action
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ;; Make TAB works in terminal
@@ -80,9 +94,6 @@
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (global-set-key (kbd "C-x b") 'helm-mini)
 (add-hook 'kill-emacs-hook #'(lambda () (and (file-exists-p "$CONF_FILE") (delete-file "$CONF_FILE"))))
-
-(helm-mode 1)
-(helm-projectile-on)
 
 ;; JS2
 (setq-default js2-basic-offset 2)
@@ -107,6 +118,7 @@
 (yas-global-mode 1)
 
 ;; Fill Column Indicator
+(require 'fill-column-indicator)
 (setq-default fci-rule-column 80)
 (setq-default fci-rule-color "#DC143C")
 
@@ -114,7 +126,7 @@
 (make-variable-buffer-local 'i42/fci-mode-suppressed)
 
 (defun fci-width-workaround (frame)
-  "Activate fci when terminal allow it."
+  "Activate fci when terminal allow it.  FRAME."
   (let ((fci-enabled (symbol-value 'fci-mode))
         (fci-column (if fci-rule-column fci-rule-column fill-column))
         (current-window-list (window-list frame 'no-minibuf)))
