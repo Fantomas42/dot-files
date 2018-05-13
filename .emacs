@@ -114,6 +114,9 @@
 
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
+;; Anaconda
+(add-hook 'python-mode-hook 'anaconda-mode)
+
 ;; JS2
 (setq-default js2-basic-offset 2)
 (setq-default js2-mode-show-parse-errors nil)
@@ -130,7 +133,7 @@
    "Major mode for editing GitHub Flavored Markdown files" t)
 (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
 
-;; Smart mode linee
+;; Smart mode line
 (require 'smart-mode-line)
 (setq sml/no-confirm-load-theme t)
 (setq sml/theme 'dark)
@@ -202,7 +205,6 @@
 (add-hook 'sgml-mode-hook 'emmet-mode)
 (add-hook 'rst-mode-hook 'turn-on-auto-fill)
 (add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
-(add-hook 'python-mode-hook 'anaconda-mode)
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . sass-mode))
 
 ;; Colored #hexacolor
