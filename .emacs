@@ -14,6 +14,8 @@
 (setq package-selected-packages
       '(
         anaconda-mode
+        company
+        company-anaconda
         emmet-mode
         fill-column-indicator
         flycheck
@@ -114,8 +116,15 @@
 
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
-;; Anaconda
+;; Anaconda & Company
+(require 'company)
+(setq company-dabbrev-downcase 0)
+(setq company-idle-delay 0)
+
+(add-hook 'after-init-hook 'global-company-mode)
 (add-hook 'python-mode-hook 'anaconda-mode)
+(eval-after-load "company"
+  '(add-to-list 'company-backends '(company-anaconda :with company-capf)))
 
 ;; JS2
 (setq-default js2-basic-offset 2)
@@ -181,7 +190,7 @@
            (not (string-match "^magit.*" (buffer-name)))
            (not (eq major-mode 'dired-mode)))
           (fci-mode 1))))
-(fci-global-mode 1)
+;;(fci-global-mode 1)
 
 ;; Aliases
 (global-set-key [f6] "import pdb; pdb.set_trace()\n")
