@@ -32,6 +32,7 @@
         rjsx-mode
         sass-mode
         web-mode
+        yaml-mode
         yasnippet
         yasnippet-snippets
 	))
