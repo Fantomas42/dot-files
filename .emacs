@@ -16,6 +16,7 @@
         anaconda-mode
         company
         company-anaconda
+        dockerfile-mode
         emmet-mode
         fill-column-indicator
         flycheck
