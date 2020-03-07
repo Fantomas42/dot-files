@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python2
 # -*- coding: utf-8 -*-
 """
 This module defines a Print function to use with python 2.x or 3.x.,
@@ -117,12 +117,12 @@ if not branch:  # not on any branch
         branch = symbols['prehash'] + Popen(
             ['git', 'rev-parse', '--short', 'HEAD'],
             stdout=PIPE
-        ).communicate()[0].decode('utf-8')[:-1]
+        ).communicate()[0][:-1]
 else:
     remote_name = Popen(
         ['git', 'config', 'branch.%s.remote' % branch],
         stdout=PIPE
-    ).communicate()[0].strip()
+    ).communicate()[0].decode('utf-8').strip()
     if remote_name:
         merge_name = Popen(
             ['git', 'config', 'branch.%s.merge' % branch],
@@ -147,6 +147,7 @@ else:
             ['git', 'rev-list', '--left-right', '%s...HEAD' % merge_name],
             stdout=PIPE, stderr=PIPE
         ).communicate()[0]
+
     behead = revlist.splitlines()
     ahead = len([x for x in behead if x[0] == '>'])
     behind = len(behead) - ahead
