@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 """
 This module defines a Print function to use with python 2.x or 3.x.,
