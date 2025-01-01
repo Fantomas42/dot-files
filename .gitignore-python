@@ -6,6 +6,7 @@ TODO
 TODO.txt
 /bin/
 /lib/
+/lib64
 /dist/
 /share/
 /eggs/
@@ -19,4 +20,5 @@ TODO.txt
 .installed.cfg
 pip-selfcheck.json
 package-lock.json
+pyvenv.cfg
 yarn.lock
