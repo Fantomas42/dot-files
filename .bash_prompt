@@ -133,7 +133,7 @@ function set_virtualenv () {
   if test -z "$VIRTUAL_ENV" ; then
       PYTHON_VIRTUALENV=""
   else
-      PYTHON_VIRTUALENV="${CYAN_BOLD}`basename \"$VIRTUAL_ENV\"`${COLOR_NONE}"
+      PYTHON_VIRTUALENV="${CYAN_BOLD}`basename \"${VIRTUAL_ENV///.venv/}\"`${COLOR_NONE}"
   fi
 }
 
@@ -142,7 +142,7 @@ function pwd_tail () {
   if test -z "$VIRTUAL_ENV" ; then
     PWD_TAIL="\w"
   else
-    PWD_TAIL="`pwd | sed \"s;${VIRTUAL_ENV};~;\"`"
+    PWD_TAIL="`pwd | sed \"s;${VIRTUAL_ENV///.venv/};~;\"`"
   fi
 }
 

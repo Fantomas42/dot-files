@@ -39,6 +39,16 @@ auto_activate ()
             fi
         fi
     fi
+
+    VENV_DIR=$(find-up .venv/bin/activate)
+    if [ ! -z $VENV_DIR ]; then
+        VENV_PATH="$VENV_DIR/.venv/bin/activate"
+        if [ -r $VENV_PATH ]; then
+            if head -n 22 $VENV_PATH | grep -q 'source bin/activate' > /dev/null; then
+                source $VENV_PATH
+            fi
+        fi
+    fi
 }
 
 # Auto-activate at start-up
